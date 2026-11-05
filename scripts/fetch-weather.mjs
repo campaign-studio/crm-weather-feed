@@ -1,4 +1,4 @@
-// Gera site/weather.json com o clima atual de 4 cidades (fonte: MET Norway, https://api.met.no).
+// Gera site/weather.json com o clima atual de 4 cidades (fonte: api.met.no).
 // Node 20+, sem dependencias. Se qualquer cidade falhar o job falha e o Pages mantem o ultimo JSON publicado.
 import { mkdir, writeFile } from "node:fs/promises";
 
@@ -37,9 +37,9 @@ async function one(name, { lat, lon }) {
   throw lastErr;
 }
 
-const out = { updated_at: new Date().toISOString(), epoch: Math.floor(Date.now() / 1000), source: "MET Norway (CC BY 4.0)" };
+const out = { updated_at: new Date().toISOString(), epoch: Math.floor(Date.now() / 1000) };
 for (const [name, pos] of Object.entries(CITIES)) out[name] = await one(name, pos); // sequencial: educado com a API
 await mkdir("site", { recursive: true });
 await writeFile("site/weather.json", JSON.stringify(out, null, 2));
-await writeFile("site/index.html", "<!doctype html><meta charset=utf-8><title>weather feed</title><p>Weather data: MET Norway. <a href=weather.json>weather.json</a>");
+await writeFile("site/index.html", "<!doctype html><meta charset=utf-8><title>weather feed</title><p><a href=weather.json>weather.json</a>");
 console.log(JSON.stringify(out));
