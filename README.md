@@ -7,7 +7,7 @@ Publica `weather.json` (4 cidades) no GitHub Pages a cada 30 min. A Braze le ess
 2. Settings > Pages > Source: **GitHub Actions**. (Pages gratuito exige repo publico. O JSON so tem clima, nao ha dado sensivel.)
 3. Actions > weather-feed > Run workflow (primeira publicacao).
 4. URL final: `https://campaign-studio.github.io/crm-weather-feed/weather.json` (ou dominio proprio). Colocar essa URL no bloco Liquid do e-mail (variavel `WEATHER_URL`).
-5. Contato no `User-Agent` (a MET Norway exige): hiago.branco@gympass.com; trocar por uma caixa do time CRM quando houver e manter a atribuicao "Weather data: MET Norway" no e-mail.
+5. Contato no `User-Agent` (a API exige): hiago.branco@gympass.com; trocar por uma caixa do time CRM quando houver.
 
 ## Formato
 ```json
